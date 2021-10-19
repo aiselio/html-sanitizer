@@ -261,6 +261,7 @@ class Sanitizer(object):
             inline_style=False,
             # Do not strip all form tags; we will filter them below
             forms=False,
+            kill_tags=('head', 'title'),
         )(doc)
 
         # walk the tree recursively, because we want to be able to remove
@@ -394,6 +395,7 @@ class Sanitizer(object):
             safe_attrs_only=False,  # Our attributes allowlist is sufficient.
             add_nofollow=self.add_nofollow,
             forms=False,
+            kill_tags=('head', 'title'),
         )(doc)
 
         html = lxml.html.tostring(doc, encoding="unicode")
